@@ -5,16 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Classes;
 use App\Models\Student;
+use App\Models\Section;
 use App\Http\Resources\StudentResource;
-use App\Http\Resources\ClassResource;
+use App\Http\Resources\ClassesResource;
+use App\Http\Resources\SectionResource;
 
 class StudentController extends Controller
 {
     public function index()
     {
+        //PostResource::collection(Post::all())
         $students = StudentResource::collection(Student::all());
+        $classes = ClassesResource::collection(Classes::all());
+        $sections = SectionResource::collection(Section::all());
         return inertia('Student/Index', [
-            'students' => $students
+            'students' => $students,
+            'classes' => $classes,
+            'sections' => $sections
         ]);
     }
 /*
