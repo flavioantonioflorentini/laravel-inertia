@@ -1,7 +1,7 @@
 <script setup>
 import MagnifyingGlass from "@/Components/Icons/MagnifyingGlass.vue";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-//import Pagination from "@/Components/Pagination.vue";
+import Pagination from "@/Components/Pagination.vue";
 import { Head, Link, router, useForm, usePage } from "@inertiajs/vue3";
 import { ref, watch, computed } from "vue";
 
@@ -60,6 +60,16 @@ watch(
         }
     }
 );
+
+const deleteForm = useForm({});
+
+const deleteStudent = (id) => {
+    if (confirm("Are you sure you want to delete this student?")) {
+        deleteForm.delete(route("students.destroy", id), {
+            preserveScroll: true,
+        });
+    }
+};
 </script>
 
 <template>

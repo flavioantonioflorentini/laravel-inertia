@@ -15,7 +15,8 @@ class StudentController extends Controller
     public function index()
     {
         //PostResource::collection(Post::all())
-        $students = StudentResource::collection(Student::all());
+        //$students = StudentResource::collection(Student::all());
+        $students = StudentResource::collection(Student::paginate(10));
         $classes = ClassesResource::collection(Classes::all());
         $sections = SectionResource::collection(Section::all());
         return inertia('Student/Index', [
